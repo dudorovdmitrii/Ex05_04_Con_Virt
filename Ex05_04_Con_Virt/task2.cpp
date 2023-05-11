@@ -41,7 +41,7 @@ void task2(int initX, int initY, int initWidth, int initHeight, int dragValue)
 		}
 
 		for (int i = 0; i < enemyStoneCount; i++) {
-			if (!enemyStones[i]->IsOnFigure() && figure.IsHit(enemyStones[i])) {
+			if (!enemyStones[i]->IsOnFigure() && enemyStones[i]->IsVisible() && figure.IsHit(enemyStones[i])) {
 				figure.AttachHole(enemyStones[i]);
 			}
 		}
