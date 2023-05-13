@@ -151,14 +151,22 @@
     <ClInclude Include="GetConlWin.h" />
     <ClInclude Include="Task1.h" />
     <ClInclude Include="Task2.h" />
+    <ClInclude Include="Task3.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Methods_Taks2.cpp" />
+    <ClCompile Include="Methods_Task3.cpp" />
     <ClCompile Include="Source.cpp" />
     <ClCompile Include="GetConlWin.cpp" />
     <ClCompile Include="Methods_Task1.cpp" />
     <ClCompile Include="Task1.cpp" />
     <ClCompile Include="Task2.cpp" />
+    <ClCompile Include="Task3.cpp" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="ClassDiagram1.cd" />
+    <None Include="ClassDiagram2.cd" />
+    <None Include="ClassDiagram3.cd" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

@@ -8,9 +8,8 @@ void task2(int initX, int initY, int initWidth, int initHeight, int dragValue)
 	EnemyStone enemyStone3 = EnemyStone(initX + 500, initY + 500, 30);
 	EnemyStone* enemyStones[enemyStoneCount] = { &enemyStone1, &enemyStone2, &enemyStone3 };
 
-	// Динамический полиморфизм
 	FriendStone friendStone1 = FriendStone(initX + 600, initY + 300, 30);
-	Stone* friendStones[friendStoneCount] = { &friendStone1 };
+	FriendStone* friendStones[friendStoneCount] = { &friendStone1 };
 
 	for (int i = 0; i < enemyStoneCount; i++) {
 		enemyStones[i]->Show();

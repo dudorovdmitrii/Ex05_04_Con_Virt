@@ -116,7 +116,6 @@ Stone::~Stone(void)
 void Stone::Show() {
 	Visible = true;
 
-	// прямоугольник
 	SelectObject(hdc, BlackPen);
 	Ellipse(hdc, X - radius, Y + radius, X + radius, Y - radius);
 }

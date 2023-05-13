@@ -11,6 +11,7 @@ using namespace std;
 
 void task1(int initX, int initY, int initWidth, int initHeight, int dragValue);
 void task2(int initX, int initY, int initWidth, int initHeight, int dragValue);
+void task3(int initX, int initY, int initWidth, int initHeight, int dragValue);
 
 extern HPEN WhitePen;
 extern HPEN BlackPen;

@@ -88,44 +88,36 @@ void Point::Drag(int Step)
 	// получаем начальные координаты
 	FigY = GetY();
 	// получаем начальные координаты
-	// бесконечный цикл буксировки фигуры
-	while (1)
-	{
-		if (KEY_DOWN(VK_ESCAPE)) // цифра 27 конец работы 
-		{
-			break;
-		}
 
-		// направаление движения объекта
-		if (KEY_DOWN(VK_LEFT))
-			// 37 стрелка влево
-		{
-			FigX -= Step;
-			MoveTo(FigX, FigY);
-			Sleep(100);
-		} // if
-		if (KEY_DOWN(VK_RIGHT))
-			// 39 стрелка вправо
-		{
-			FigX += Step;
-			MoveTo(FigX, FigY);
-			Sleep(100);
-		} // if
-		if (KEY_DOWN(VK_DOWN))
-			// 40 стрелка вниз
-		{
-			FigY += Step;
-			MoveTo(FigX, FigY);
-			Sleep(100);
-		} // if
-		if (KEY_DOWN(VK_UP))
-			// 38 стрелка вверх
-		{
-			FigY -= Step;
-			MoveTo(FigX, FigY);
-			Sleep(100);
-		} // if
-	}
+	// направаление движения объекта
+	if (KEY_DOWN(VK_LEFT))
+		// 37 стрелка влево
+	{
+		FigX -= Step;
+		MoveTo(FigX, FigY);
+		Sleep(100);
+	} // if
+	if (KEY_DOWN(VK_RIGHT))
+		// 39 стрелка вправо
+	{
+		FigX += Step;
+		MoveTo(FigX, FigY);
+		Sleep(100);
+	} // if
+	if (KEY_DOWN(VK_DOWN))
+		// 40 стрелка вниз
+	{
+		FigY += Step;
+		MoveTo(FigX, FigY);
+		Sleep(100);
+	} // if
+	if (KEY_DOWN(VK_UP))
+		// 38 стрелка вверх
+	{
+		FigY -= Step;
+		MoveTo(FigX, FigY);
+		Sleep(100);
+	} // if
 }
 
 /*----------------------------------------*/
