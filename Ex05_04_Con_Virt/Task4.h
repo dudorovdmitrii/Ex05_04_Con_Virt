@@ -6,6 +6,9 @@ class Obstacle {
 	virtual void Show(void) = 0;
 	virtual void Hide(void) = 0;
 	virtual bool IsVisible() = 0;
+
+	virtual int GetX() = 0; //получить X координату препятствия
+	virtual int GetY() = 0; //получить Y координату препятствия
 };
 
 class Suit : public Obstacle {
@@ -13,14 +16,20 @@ protected:
 	int d1;
 	int d2;
 	bool Visible;
+	int X;
+	int Y;
 public:
 	Suit(int InitX, int InitY, int d1, int d2);
 	~Suit(); //деструктор
 
 	int GetD1();
 	int GetD2();
+	int GetX(); //получить X координату препятствия
+	int GetY(); //получить Y координату препятствия
+
 	void Show(void);
 	void Hide(void);
+	bool IsVisible();
 };
 
 class Stone : public Obstacle
@@ -28,14 +37,19 @@ class Stone : public Obstacle
 protected:
 	int radius; // радиус
 	bool Visible;
+	int X;
+	int Y;
 public:
 	Stone(int InitX, int InitY, int radius);
 	~Stone();
 
 	int GetRadius();
+	int GetX(); //получить X координату препятствия
+	int GetY(); //получить Y координату препятствия
 
 	void Show();
 	void Hide();
+	bool IsVisible();
 };
 
 // Абстрактный класс фигуры
@@ -52,6 +66,8 @@ public:
 
 	int GetX(); //получить X координату точки
 	int GetY(); //получить Y координату точки
+	int GetWidth();
+	int GetHeight();
 	void SetX(int newX);
 	void SetY(int newY);
 
@@ -83,6 +99,16 @@ class FigureКrhomb7 : public AbstractFigure
 public:
 	FigureКrhomb7(int InitX, int InitY, int width, int height);
 	~FigureКrhomb7(); //деструктор
+
+	void Show(void);
+	void Hide(void);
+};
+
+class FigureКrhomb7WithHole : public AbstractFigure
+{
+public:
+	FigureКrhomb7WithHole(int InitX, int InitY, int width, int height);
+	~FigureКrhomb7WithHole(); //деструктор
 
 	void Show(void);
 	void Hide(void);

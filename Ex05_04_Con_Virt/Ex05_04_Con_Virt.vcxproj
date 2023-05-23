@@ -152,16 +152,19 @@
     <ClInclude Include="Task1.h" />
     <ClInclude Include="Task2.h" />
     <ClInclude Include="Task3.h" />
+    <ClInclude Include="Task4.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Methods_Taks2.cpp" />
     <ClCompile Include="Methods_Task3.cpp" />
+    <ClCompile Include="Methods_Task4.cpp" />
     <ClCompile Include="Source.cpp" />
     <ClCompile Include="GetConlWin.cpp" />
     <ClCompile Include="Methods_Task1.cpp" />
     <ClCompile Include="Task1.cpp" />
     <ClCompile Include="Task2.cpp" />
     <ClCompile Include="Task3.cpp" />
+    <ClCompile Include="Task4.cpp" />
   </ItemGroup>
   <ItemGroup>
     <None Include="ClassDiagram1.cd" />

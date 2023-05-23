@@ -3,8 +3,10 @@
 /*----------------------------------------*/
 /* ÌÅÒÎÄÛ ÊËÀÑÑÀ Suit                     */
 /*----------------------------------------*/
-Suit::Suit(int InitX, int InitY, int InitD1, int InitD2) : VirtualPoint(InitX, InitY)
+Suit::Suit(int InitX, int InitY, int InitD1, int InitD2)
 {
+	X = InitX;
+	Y = InitY;
 	d1 = InitD1;
 	d2 = InitD2;
 	Visible = false;
@@ -64,11 +66,29 @@ int Suit::GetD2() {
 	return d2;
 }
 
+int Suit::GetX(void)
+{
+	return X;
+};
+
+//ïîëó÷èòü Y êîîğäèíàòó ôèãóğû
+int Suit::GetY(void)
+{
+	return Y;
+};
+
+bool Suit::IsVisible(void)
+{
+	return Visible;
+};
+
 /*---------------------------------------*/
 /*        ÌÅÒÎÄÛ ÊËÀÑÑÀ Stone            */
 /*---------------------------------------*/
-Stone::Stone(int InitX, int InitY, int InitRadius) : VirtualPoint(InitX, InitY)
+Stone::Stone(int InitX, int InitY, int InitRadius)
 {
+	X = InitX;
+	Y = InitY;
 	radius = InitRadius;
 	Visible = false;
 }
@@ -99,6 +119,22 @@ void Stone::Hide(void) {
 int Stone::GetRadius() {
 	return radius;
 }
+
+int Stone::GetX(void)
+{
+	return X;
+};
+
+//ïîëó÷èòü Y êîîğäèíàòó ôèãóğû
+int Stone::GetY(void)
+{
+	return Y;
+};
+
+bool Stone::IsVisible(void)
+{
+	return Visible;
+};
 
 /*----------------------------------------*/
 /*    ÌÅÒÎÄÛ ÊËÀÑÑÀ AbstractFigure        */
@@ -220,6 +256,13 @@ bool AbstractFigure::IsHit(Stone* stone)
 	return hitX && hitY;
 }
 
+int AbstractFigure::GetWidth() {
+	return width;
+}
+
+int AbstractFigure::GetHeight() {
+	return height;
+}
 
 /*----------------------------------------*/
 /* ÌÅÒÎÄÛ ÊËÀÑÑÀ FigureÊrhomb7            */
@@ -233,14 +276,19 @@ FigureÊrhomb7::~FigureÊrhomb7(void)
 };
 
 void FigureÊrhomb7::Show(void) {
-	FigureBlank::Show();
-
 	int halfWidth = (width / 2),
 		fourthHeight = (height / 4),
 		fourthWidth = (width / 4),
 		tenthWidth = (width / 10),
 		tenthHeight = (height / 10),
 		radius = 50;
+
+	Visible = true;
+	// ïğÿìîóãîëüíèê
+	SelectObject(hdc, BlackPen);
+
+	MoveToEx(hdc, X, Y, NULL);
+	Rectangle(hdc, X, Y, X + width, Y + height);
 
 	// öèôğà 7
 	SelectObject(hdc, RedPen);
@@ -274,6 +322,67 @@ void FigureÊrhomb7::Hide(void)
 }
 
 /*----------------------------------------*/
+/* ÌÅÒÎÄÛ ÊËÀÑÑÀ FigureÊrhomb7WithHole           */
+/*----------------------------------------*/
+FigureÊrhomb7WithHole::FigureÊrhomb7WithHole(int InitX, int InitY, int initWidth, int initHeight) : AbstractFigure(InitX, InitY, initWidth, initHeight)
+{
+}
+
+FigureÊrhomb7WithHole::~FigureÊrhomb7WithHole(void)
+{
+};
+
+void FigureÊrhomb7WithHole::Show(void) {
+	int halfWidth = (width / 2),
+		fourthHeight = (height / 4),
+		fourthWidth = (width / 4),
+		tenthWidth = (width / 10),
+		tenthHeight = (height / 10),
+		radius = 50;
+
+	Visible = true;
+	// ïğÿìîóãîëüíèê
+	SelectObject(hdc, BlackPen);
+
+	MoveToEx(hdc, X, Y, NULL);
+	Rectangle(hdc, X, Y, X + width, Y + height);
+
+	// öèôğà 7
+	SelectObject(hdc, RedPen);
+	MoveToEx(hdc, tenthWidth / 2 + X, Y + tenthHeight / 2, NULL);
+	LineTo(hdc, tenthWidth * 2 + X, Y + tenthHeight / 2);
+	LineTo(hdc, tenthWidth + X, Y + tenthHeight * 2);
+
+	// ğîìá
+
+	MoveToEx(hdc, halfWidth + X, Y + fourthHeight, NULL);
+	LineTo(hdc, fourthWidth + X, fourthHeight * 2 + Y);
+
+	MoveToEx(hdc, halfWidth + X, Y + fourthHeight, NULL);
+	LineTo(hdc, X + 3 * fourthWidth, fourthHeight * 2 + Y);
+
+	MoveToEx(hdc, halfWidth + X, Y + fourthHeight * 3, NULL);
+	LineTo(hdc, fourthWidth + X, fourthHeight * 2 + Y);
+
+	MoveToEx(hdc, halfWidth + X, Y + fourthHeight * 3, NULL);
+	LineTo(hdc, X + 3 * fourthWidth, fourthHeight * 2 + Y);
+
+	SelectObject(hdc, BlackPen);
+	Ellipse(hdc, X + radius, Y + radius, X + radius * 2, Y + radius * 2);
+}
+
+void FigureÊrhomb7WithHole::Hide(void)
+{
+	Visible = false;
+
+	// ïğÿìîóãîëüíèê
+	SelectObject(hdc, WhitePen);
+	MoveToEx(hdc, X, Y, NULL);
+	Rectangle(hdc, X, Y, X + width, Y + height);
+}
+
+
+/*----------------------------------------*/
 /* ÌÅÒÎÄÛ ÊËÀÑÑÀ FigureÊrhomb8            */
 /*----------------------------------------*/
 FigureÊrhomb8::FigureÊrhomb8(int InitX, int InitY, int initWidth, int initHeight) : AbstractFigure(InitX, InitY, initWidth, initHeight)
@@ -285,8 +394,6 @@ FigureÊrhomb8::~FigureÊrhomb8(void)
 };
 
 void FigureÊrhomb8::Show(void) {
-	FigureBlank::Show();
-
 	int halfWidth = (width / 2),
 		fourthHeight = (height / 4),
 		fourthWidth = (width / 4),
@@ -294,6 +401,13 @@ void FigureÊrhomb8::Show(void) {
 		tenthHeight = (height / 10),
 		radius = 50,
 		numberRadius = 20;
+
+	Visible = true;
+	// ïğÿìîóãîëüíèê
+	SelectObject(hdc, BlackPen);
+
+	MoveToEx(hdc, X, Y, NULL);
+	Rectangle(hdc, X, Y, X + width, Y + height);
 
 	// 8
 	SelectObject(hdc, RedPen);
@@ -332,7 +446,7 @@ void FigureÊrhomb8::Hide(void)
 /*----------------------------------------*/
 /* ÌÅÒÎÄÛ ÊËÀÑÑÀ FigureÊrhomb8WithHole    */
 /*----------------------------------------*/
-FigureÊrhomb8WithHole::FigureÊrhomb8WithHole(int InitX, int InitY, int initWidth, int initHeight) : FigureBlank(InitX, InitY, initWidth, initHeight)
+FigureÊrhomb8WithHole::FigureÊrhomb8WithHole(int InitX, int InitY, int initWidth, int initHeight) : AbstractFigure(InitX, InitY, initWidth, initHeight)
 {
 }
 
@@ -341,7 +455,6 @@ FigureÊrhomb8WithHole::~FigureÊrhomb8WithHole(void)
 };
 
 void FigureÊrhomb8WithHole::Show(void) {
-	FigureBlank::Show();
 
 	int halfWidth = (width / 2),
 		fourthHeight = (height / 4),
@@ -350,6 +463,13 @@ void FigureÊrhomb8WithHole::Show(void) {
 		tenthHeight = (height / 10),
 		radius = 50,
 		numberRadius = 20;
+
+	Visible = true;
+	// ïğÿìîóãîëüíèê
+	SelectObject(hdc, BlackPen);
+
+	MoveToEx(hdc, X, Y, NULL);
+	Rectangle(hdc, X, Y, X + width, Y + height);
 
 	// öèôğà 7
 	SelectObject(hdc, RedPen);
@@ -391,7 +511,7 @@ void FigureÊrhomb8WithHole::Hide(void)
 /*----------------------------------------*/
 /* ÌÅÒÎÄÛ ÊËÀÑÑÀ FigureÊrhomb10           */
 /*----------------------------------------*/
-FigureÊrhomb10::FigureÊrhomb10(int InitX, int InitY, int initWidth, int initHeight) : FigureBlank(InitX, InitY, initWidth, initHeight)
+FigureÊrhomb10::FigureÊrhomb10(int InitX, int InitY, int initWidth, int initHeight) : AbstractFigure(InitX, InitY, initWidth, initHeight)
 {
 }
 
@@ -400,8 +520,6 @@ FigureÊrhomb10::~FigureÊrhomb10(void)
 };
 
 void FigureÊrhomb10::Show(void) {
-	FigureBlank::Show();
-
 	int halfWidth = (width / 2),
 		fourthHeight = (height / 4),
 		fourthWidth = (width / 4),
@@ -409,6 +527,13 @@ void FigureÊrhomb10::Show(void) {
 		tenthHeight = (height / 10),
 		radius = 50,
 		numberRadius = 30;
+
+	Visible = true;
+	// ïğÿìîóãîëüíèê
+	SelectObject(hdc, BlackPen);
+
+	MoveToEx(hdc, X, Y, NULL);
+	Rectangle(hdc, X, Y, X + width, Y + height);
 
 	// öèôğà 10
 	SelectObject(hdc, RedPen);
@@ -447,7 +572,7 @@ void FigureÊrhomb10::Hide(void)
 /*----------------------------------------*/
 /* ÌÅÒÎÄÛ ÊËÀÑÑÀ FigureÊrhomb1           */
 /*----------------------------------------*/
-FigureÊrhomb1::FigureÊrhomb1(int InitX, int InitY, int initWidth, int initHeight) : FigureBlank(InitX, InitY, initWidth, initHeight)
+FigureÊrhomb1::FigureÊrhomb1(int InitX, int InitY, int initWidth, int initHeight) : AbstractFigure(InitX, InitY, initWidth, initHeight)
 {
 }
 
@@ -456,8 +581,6 @@ FigureÊrhomb1 ::~FigureÊrhomb1(void)
 };
 
 void FigureÊrhomb1::Show(void) {
-	FigureBlank::Show();
-
 	int halfWidth = (width / 2),
 		fourthHeight = (height / 4),
 		fourthWidth = (width / 4),
@@ -465,6 +588,13 @@ void FigureÊrhomb1::Show(void) {
 		tenthHeight = (height / 10),
 		radius = 50,
 		numberRadius = 30;
+
+	Visible = true;
+	// ïğÿìîóãîëüíèê
+	SelectObject(hdc, BlackPen);
+
+	MoveToEx(hdc, X, Y, NULL);
+	Rectangle(hdc, X, Y, X + width, Y + height);
 
 	// öèôğà 10
 	SelectObject(hdc, RedPen);
