@@ -61,12 +61,29 @@ bool FigureBlank::IsHit(Number* number)
 	return hitX && hitY;
 }
 
+bool FigureBlank::IsHit(FigureBlank* figure)
+{
+	int objectX = figure->GetX(), objectY = figure->GetY();
+	bool hitX = X + width >= objectX && X <= objectX + figure->GetWidth();
+	bool hitY = Y + height >= objectY && Y <= objectY + figure->GetHeight();
+
+	return hitX && hitY;
+}
+
 void FigureBlank::SetX(int newX) {
 	X = newX;
 }
 
 void FigureBlank::SetY(int newY) {
 	Y = newY;
+}
+
+int FigureBlank::GetWidth() {
+	return width;
+}
+
+int FigureBlank::GetHeight() {
+	return height;
 }
 
 /*----------------------------------------*/
@@ -315,6 +332,231 @@ void FigureComplete::Show(void) {
 	SelectObject(hdc, BlackPen);
 	Ellipse(hdc, X + radius, Y + radius, X + radius * 2, Y + radius * 2);
 }
+
+/*----------------------------------------*/
+/* Ã≈“Œƒ€  À¿——¿ Figure rhomb8WithHole    */
+/*----------------------------------------*/
+Figure rhomb8WithHole::Figure rhomb8WithHole(int InitX, int InitY, int initWidth, int initHeight) : FigureBlank(InitX, InitY, initWidth, initHeight)
+{
+}
+
+Figure rhomb8WithHole::~Figure rhomb8WithHole(void)
+{
+};
+
+void Figure rhomb8WithHole::Show(void) {
+	FigureBlank::Show();
+
+	int halfWidth = (width / 2),
+		fourthHeight = (height / 4),
+		fourthWidth = (width / 4),
+		tenthWidth = (width / 10),
+		tenthHeight = (height / 10),
+		radius = 50,
+		numberRadius = 20;
+
+	// ˆËÙ‡ 7
+	SelectObject(hdc, RedPen);
+	MoveToEx(hdc, tenthWidth / 2 + X, Y + tenthHeight / 2, NULL);
+	int shiftedX = tenthWidth / 2 + X + 5, shiftedY = Y + tenthHeight / 2;
+	Ellipse(hdc, shiftedX, shiftedY, shiftedX + numberRadius * 2, shiftedY + numberRadius * 2);
+	MoveToEx(hdc, tenthWidth / 2 + X, Y + tenthHeight / 2 + numberRadius * 2, NULL);
+	Ellipse(hdc, shiftedX, shiftedY + numberRadius * 2, shiftedX + numberRadius * 2, shiftedY + numberRadius * 4);
+
+	// ÓÏ·
+
+	MoveToEx(hdc, halfWidth + X, Y + fourthHeight, NULL);
+	LineTo(hdc, fourthWidth + X, fourthHeight * 2 + Y);
+
+	MoveToEx(hdc, halfWidth + X, Y + fourthHeight, NULL);
+	LineTo(hdc, X + 3 * fourthWidth, fourthHeight * 2 + Y);
+
+	MoveToEx(hdc, halfWidth + X, Y + fourthHeight * 3, NULL);
+	LineTo(hdc, fourthWidth + X, fourthHeight * 2 + Y);
+
+	MoveToEx(hdc, halfWidth + X, Y + fourthHeight * 3, NULL);
+	LineTo(hdc, X + 3 * fourthWidth, fourthHeight * 2 + Y);
+
+
+	SelectObject(hdc, BlackPen);
+	Ellipse(hdc, X + radius, Y + radius, X + radius * 2, Y + radius * 2);
+}
+
+/*----------------------------------------*/
+/* Ã≈“Œƒ€  À¿——¿ Figure rhomb7            */
+/*----------------------------------------*/
+Figure rhomb7::Figure rhomb7(int InitX, int InitY, int initWidth, int initHeight) : FigureBlank(InitX, InitY, initWidth, initHeight)
+{
+}
+
+Figure rhomb7::~Figure rhomb7(void)
+{
+};
+
+void Figure rhomb7::Show(void) {
+	FigureBlank::Show();
+
+	int halfWidth = (width / 2),
+		fourthHeight = (height / 4),
+		fourthWidth = (width / 4),
+		tenthWidth = (width / 10),
+		tenthHeight = (height / 10),
+		radius = 50;
+
+	// ˆËÙ‡ 7
+	SelectObject(hdc, RedPen);
+	MoveToEx(hdc, tenthWidth / 2 + X, Y + tenthHeight / 2, NULL);
+	LineTo(hdc, tenthWidth * 2 + X, Y + tenthHeight / 2);
+	LineTo(hdc, tenthWidth + X, Y + tenthHeight * 2);
+
+	// ÓÏ·
+
+	MoveToEx(hdc, halfWidth + X, Y + fourthHeight, NULL);
+	LineTo(hdc, fourthWidth + X, fourthHeight * 2 + Y);
+
+	MoveToEx(hdc, halfWidth + X, Y + fourthHeight, NULL);
+	LineTo(hdc, X + 3 * fourthWidth, fourthHeight * 2 + Y);
+
+	MoveToEx(hdc, halfWidth + X, Y + fourthHeight * 3, NULL);
+	LineTo(hdc, fourthWidth + X, fourthHeight * 2 + Y);
+
+	MoveToEx(hdc, halfWidth + X, Y + fourthHeight * 3, NULL);
+	LineTo(hdc, X + 3 * fourthWidth, fourthHeight * 2 + Y);
+}
+
+/*----------------------------------------*/
+/* Ã≈“Œƒ€  À¿——¿ Figure rhomb8            */
+/*----------------------------------------*/
+Figure rhomb8::Figure rhomb8(int InitX, int InitY, int initWidth, int initHeight) : FigureBlank(InitX, InitY, initWidth, initHeight)
+{
+}
+
+Figure rhomb8::~Figure rhomb8(void)
+{
+};
+
+void Figure rhomb8::Show(void) {
+	FigureBlank::Show();
+
+	int halfWidth = (width / 2),
+		fourthHeight = (height / 4),
+		fourthWidth = (width / 4),
+		tenthWidth = (width / 10),
+		tenthHeight = (height / 10),
+		radius = 50,
+		numberRadius = 20;
+
+	// 8
+	SelectObject(hdc, RedPen);
+	MoveToEx(hdc, tenthWidth / 2 + X, Y + tenthHeight / 2, NULL);
+	int shiftedX = tenthWidth / 2 + X + 5, shiftedY = Y + tenthHeight / 2;
+	Ellipse(hdc, shiftedX, shiftedY, shiftedX + numberRadius * 2, shiftedY + numberRadius * 2);
+	MoveToEx(hdc, tenthWidth / 2 + X, Y + tenthHeight / 2 + numberRadius * 2, NULL);
+	Ellipse(hdc, shiftedX, shiftedY + numberRadius * 2, shiftedX + numberRadius * 2, shiftedY + numberRadius * 4);
+
+	// ÓÏ·
+
+	MoveToEx(hdc, halfWidth + X, Y + fourthHeight, NULL);
+	LineTo(hdc, fourthWidth + X, fourthHeight * 2 + Y);
+
+	MoveToEx(hdc, halfWidth + X, Y + fourthHeight, NULL);
+	LineTo(hdc, X + 3 * fourthWidth, fourthHeight * 2 + Y);
+
+	MoveToEx(hdc, halfWidth + X, Y + fourthHeight * 3, NULL);
+	LineTo(hdc, fourthWidth + X, fourthHeight * 2 + Y);
+
+	MoveToEx(hdc, halfWidth + X, Y + fourthHeight * 3, NULL);
+	LineTo(hdc, X + 3 * fourthWidth, fourthHeight * 2 + Y);
+}
+
+/*----------------------------------------*/
+/* Ã≈“Œƒ€  À¿——¿ Figure rhomb10           */
+/*----------------------------------------*/
+Figure rhomb10::Figure rhomb10(int InitX, int InitY, int initWidth, int initHeight) : FigureBlank(InitX, InitY, initWidth, initHeight)
+{
+}
+
+Figure rhomb10::~Figure rhomb10(void)
+{
+};
+
+void Figure rhomb10::Show(void) {
+	FigureBlank::Show();
+
+	int halfWidth = (width / 2),
+		fourthHeight = (height / 4),
+		fourthWidth = (width / 4),
+		tenthWidth = (width / 10),
+		tenthHeight = (height / 10),
+		radius = 50,
+		numberRadius = 30;
+
+	// ˆËÙ‡ 10
+	SelectObject(hdc, RedPen);
+	MoveToEx(hdc, tenthWidth / 2 + X, Y + tenthHeight / 2, NULL);
+	LineTo(hdc, tenthWidth / 2 + X, Y + tenthHeight * 2);
+
+	MoveToEx(hdc, tenthWidth / 2 + X, Y + tenthHeight / 2, NULL);
+	int shiftedX = tenthWidth / 2 + X + 5, shiftedY = Y + tenthHeight / 2;
+	Ellipse(hdc, shiftedX, shiftedY, shiftedX + numberRadius * 2, shiftedY + numberRadius * 2);
+
+	// ÓÏ·
+
+	MoveToEx(hdc, halfWidth + X, Y + fourthHeight, NULL);
+	LineTo(hdc, fourthWidth + X, fourthHeight * 2 + Y);
+
+	MoveToEx(hdc, halfWidth + X, Y + fourthHeight, NULL);
+	LineTo(hdc, X + 3 * fourthWidth, fourthHeight * 2 + Y);
+
+	MoveToEx(hdc, halfWidth + X, Y + fourthHeight * 3, NULL);
+	LineTo(hdc, fourthWidth + X, fourthHeight * 2 + Y);
+
+	MoveToEx(hdc, halfWidth + X, Y + fourthHeight * 3, NULL);
+	LineTo(hdc, X + 3 * fourthWidth, fourthHeight * 2 + Y);
+}
+
+/*----------------------------------------*/
+/* Ã≈“Œƒ€  À¿——¿ Figure rhomb1           */
+/*----------------------------------------*/
+Figure rhomb1::Figure rhomb1(int InitX, int InitY, int initWidth, int initHeight) : FigureBlank(InitX, InitY, initWidth, initHeight)
+{
+}
+
+Figure rhomb1 ::~Figure rhomb1(void)
+{
+};
+
+void Figure rhomb1::Show(void) {
+	FigureBlank::Show();
+
+	int halfWidth = (width / 2),
+		fourthHeight = (height / 4),
+		fourthWidth = (width / 4),
+		tenthWidth = (width / 10),
+		tenthHeight = (height / 10),
+		radius = 50,
+		numberRadius = 30;
+
+	// ˆËÙ‡ 10
+	SelectObject(hdc, RedPen);
+	MoveToEx(hdc, tenthWidth / 2 + X, Y + tenthHeight / 2, NULL);
+	LineTo(hdc, tenthWidth / 2 + X, Y + tenthHeight * 2);
+
+	// ÓÏ·
+
+	MoveToEx(hdc, halfWidth + X, Y + fourthHeight, NULL);
+	LineTo(hdc, fourthWidth + X, fourthHeight * 2 + Y);
+
+	MoveToEx(hdc, halfWidth + X, Y + fourthHeight, NULL);
+	LineTo(hdc, X + 3 * fourthWidth, fourthHeight * 2 + Y);
+
+	MoveToEx(hdc, halfWidth + X, Y + fourthHeight * 3, NULL);
+	LineTo(hdc, fourthWidth + X, fourthHeight * 2 + Y);
+
+	MoveToEx(hdc, halfWidth + X, Y + fourthHeight * 3, NULL);
+	LineTo(hdc, X + 3 * fourthWidth, fourthHeight * 2 + Y);
+}
+
 
 /*----------------------------------------*/
 /* Ã≈“Œƒ€  À¿——¿ Suit                     */

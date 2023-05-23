@@ -38,9 +38,13 @@ public:
 	bool IsHit(Stone* stone);
 	bool IsHit(Suit* suit);
 	bool IsHit(Number* number);
+	bool IsHit(FigureBlank* figure);
 
 	void SetX(int newX);
 	void SetY(int newY);
+
+	int GetHeight();
+	int GetWidth();
 };
 
 class FigureWithNumber : public FigureBlank
@@ -102,6 +106,51 @@ class FigureComplete : public FigureBlank
 public:
 	FigureComplete(int InitX, int InitY, int width, int height);
 	~FigureComplete(); //äåñòğóêòîğ
+
+	void Show(void);
+};
+
+class FigureÊrhomb1 : public FigureBlank
+{
+public:
+	FigureÊrhomb1(int InitX, int InitY, int width, int height);
+	~FigureÊrhomb1(); //äåñòğóêòîğ
+
+	void Show(void);
+};
+
+class FigureÊrhomb7 : public FigureBlank
+{
+public:
+	FigureÊrhomb7(int InitX, int InitY, int width, int height);
+	~FigureÊrhomb7(); //äåñòğóêòîğ
+
+	void Show(void);
+};
+
+class FigureÊrhomb10 : public FigureBlank
+{
+public:
+	FigureÊrhomb10(int InitX, int InitY, int width, int height);
+	~FigureÊrhomb10(); //äåñòğóêòîğ
+
+	void Show(void);
+};
+
+class FigureÊrhomb8 : public FigureBlank
+{
+public:
+	FigureÊrhomb8(int InitX, int InitY, int width, int height);
+	~FigureÊrhomb8(); //äåñòğóêòîğ
+
+	void Show(void);
+};
+
+class FigureÊrhomb8WithHole : public FigureBlank
+{
+public:
+	FigureÊrhomb8WithHole(int InitX, int InitY, int width, int height);
+	~FigureÊrhomb8WithHole(); //äåñòğóêòîğ
 
 	void Show(void);
 };

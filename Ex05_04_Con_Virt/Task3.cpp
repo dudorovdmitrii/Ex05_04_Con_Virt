@@ -2,29 +2,26 @@
 
 void task3(int initX, int initY, int initWidth, int initHeight, int dragValue)
 {
-	// Ïóñòàÿ ôèãóðà
 	FigureBlank* pointerFigure;
-	FigureBlank figureBlank(initX, initY, initWidth, initHeight);
-	pointerFigure = &figureBlank;
+
+	// Êàðòà ñ 1
+	FigureÊrhomb1 figureÊrhomb1(initX + initWidth * 2, initY + initHeight + 10, initWidth, initHeight);
+	figureÊrhomb1.Show();
+
+	// Êàðòà ñ 7
+	FigureÊrhomb7 figureÊrhomb7(initX, initY, initWidth, initHeight);
+	pointerFigure = &figureÊrhomb7;
 	pointerFigure->Show();
 
-	// Ìàñòü
-	Suit* pointerSuit;
-	Suit suit(1500, 100, initWidth / 2, initHeight / 2);
-	pointerSuit = &suit;
-	pointerSuit->Show();
+	//  Êàðòà ñ 10
+	FigureÊrhomb10 figureÊrhomb10(initX + initWidth * 2, initY - 100, initWidth, initHeight);
+	figureÊrhomb10.Show();
 
-	// ×èñëî
-	Number* pointerNumber;
-	Number number(1500, 600, initWidth / 10, initHeight / 10);
-	pointerNumber = &number;
-	pointerNumber->Show();
+	//  Êàðòà ñ 10
+	FigureÊrhomb8WithHole figureÊrhomb8WithHole(initX + initWidth * 2, initY - 100, initWidth, initHeight);
 
-	// Êàìåíü
-	Stone* pointerStone;
-	Stone stone(800, 850, 30);
-	pointerStone = &stone;
-	pointerStone->Show();
+	//  Êàðòà ñ 8
+	FigureÊrhomb8 figureÊrhomb8(initX + initWidth * 2, initY - 100, initWidth, initHeight);
 
 	// Íåïóñòûå ôèãóðû
 	FigureWithNumber figureWithNumber = FigureWithNumber(initX, initY, initWidth, initHeight);
@@ -35,35 +32,29 @@ void task3(int initX, int initY, int initWidth, int initHeight, int dragValue)
 	FigureWithSuitAndHole figureWithSuitAndHole = FigureWithSuitAndHole(initX, initY, initWidth, initHeight);
 	FigureComplete figureComplete = FigureComplete(initX, initY, initWidth, initHeight);
 
-	const int figureCount = 8;  // Êîëè÷åñòâî îáúåêòîâ ôèãóð
-	const int hitObjectsCount = 3; // Êîëè÷åñòâî îáúåêòîâ âçàèìîäåéñòâèÿ
-	
+	const int figureCount = 6;  // Êîëè÷åñòâî îáúåêòîâ ôèãóð
+	const int hitObjectsCount = 4; // Êîëè÷åñòâî îáúåêòîâ âçàèìîäåéñòâèÿ
+
 	// Ìàññèâ íåïóñòûõ ôèãóð
 	FigureBlank* figures[figureCount] = {
-		&figureBlank,
-		&figureWithNumber,
-		&figureWithSuit,
-		&figureWithHole,
-		&figureWithNumberAndSuit,
-		&figureWithNumberAndHole,
-		&figureWithSuitAndHole,
+		&figureÊrhomb7,
+		&figureÊrhomb1,
+		&figureÊrhomb10,
 		&figureComplete,
+		&figureÊrhomb8,
+		&figureÊrhomb8WithHole
 	};
-
-	// Ìàññèâ îáúåêòîâ, âçàèìîäåéñâóþùèõ ñ ôèãóðîé
-	VirtualPoint* hitObjects[hitObjectsCount] = { pointerNumber, pointerSuit, pointerStone};
 
 	// Ìàòðèöà ïåðåõîäîâ
 	int matrix[figureCount][hitObjectsCount] = {
-		{ 1, 2, 3 },
-		{ -1, 4, 5 }, 
-		{ 4, -1, 6 },
-		{ 5, 6, -1 },
-		{ -1, -1, 7 },
-		{ -1, 7, -1 },
-		{ 7, -1, -1 },
-		{ -1, -1, -1 },
+		{ -1, 4, 3, -1 },
+		{ 5, -1, 5, -1 },
+		{ 5, 5, -1, -1 },
+		{ -1, -1, -1, -1 },
+		{ -1, -1, 5, -1 },
 	};
+
+	int lastIndex = 0;
 
 	while (true) {
 		if (KEY_DOWN(VK_ESCAPE)) // Esc - êîíåö ðàáîòû 
@@ -73,54 +64,28 @@ void task3(int initX, int initY, int initWidth, int initHeight, int dragValue)
 
 		pointerFigure->Drag(dragValue);
 
-		for (int i = 0; i < hitObjectsCount; i++) {
-			if (!hitObjects[i]->IsVisible()) {
+		for (int i = 0; i < figureCount; i++) {
+			FigureBlank* figure = figures[i];
+
+			if (!figure->IsVisible() || pointerFigure == figure) {
 				continue;
 			}
 
-			bool isHit = false;
-
-			if (hitObjects[i] == pointerStone) {
-				if (pointerFigure->IsHit(pointerStone)) {
-					isHit = true;
-					pointerStone->Hide();
-				}
-			}
-
-			if (hitObjects[i] == pointerNumber) {
-				if (pointerFigure->IsHit(pointerNumber)) {
-					isHit = true;
-					pointerNumber->Hide();
-				}
-			}
-
-			if (hitObjects[i] == pointerSuit) {
-				if (pointerFigure->IsHit(pointerSuit)) {
-					isHit = true;
-					pointerSuit->Hide();
-				}
-			}
-
-			if (isHit) {
-				FigureBlank* newFigurePointer = pointerFigure;
-
-				for (int j = 0; j < figureCount; j++) {
-					if (figures[j] == pointerFigure) {
-						int figureIndex = matrix[j][i];
-						newFigurePointer = figures[figureIndex];
-						break;
-					}
-				}
+			if (pointerFigure->IsHit(figure)) {
+				figure->Hide();
+				int figureIndex = matrix[lastIndex][i];
+				FigureBlank* newFigurePointer = figures[figureIndex];
 
 				pointerFigure->Hide();
-				
+
 				int X = pointerFigure->GetX(), Y = pointerFigure->GetY();
 				newFigurePointer->SetX(X);
 				newFigurePointer->SetY(Y);
 				pointerFigure = newFigurePointer;
 				pointerFigure->Show();
-			}
 
+				lastIndex = i;
+			}
 		}
 	}
 }
