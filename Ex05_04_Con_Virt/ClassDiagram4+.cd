@@ -1,0 +1,102 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ClassDiagram MajorVersion="1" MinorVersion="1">
+  <Class Name="IPoint" Collapsed="true">
+    <Position X="11.5" Y="1" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAIAEAYAEAAAAAAAAAAMAAAAYAAAAAAAAAA=</HashCode>
+      <FileName>Task4.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Point" Collapsed="true">
+    <Position X="11.5" Y="2.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAIAkAYAEAAAAAAAAAAMAAAIYAAAAAAAYAA=</HashCode>
+      <FileName>Task4.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="ABS_Obstacle" Collapsed="true">
+    <Position X="4.75" Y="3.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAACAAAAAAAAAAAAAAAAAAAAACAAAAAA=</HashCode>
+      <FileName>Task4.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Suit" Collapsed="true">
+    <Position X="6" Y="5.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAABAAAAAAACAEAAACAAAAAAEEAAAAAAAGAEAAAA=</HashCode>
+      <FileName>Task4.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Stone" Collapsed="true">
+    <Position X="3.75" Y="5.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAACAAAAACAEAAAAAAQAAAEAAAAEAAAAAgAAAA=</HashCode>
+      <FileName>Task4.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="FriendStone" Collapsed="true">
+    <Position X="3.75" Y="6.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAEAAAAAAAAgEAAAAAAAAAAEAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Task4.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="ABS_Figure" Collapsed="true">
+    <Position X="13.75" Y="3.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAIAAQAQAAAAABAAAAAAAEAAAACAEAAAAA=</HashCode>
+      <FileName>Task4.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="FigureКrhomb1" Collapsed="true">
+    <Position X="17.25" Y="5.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAEAAAAAAAgAAEAAEAAAAAAAAACAA=</HashCode>
+      <FileName>Task4.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="FigureКrhomb1WithColor" Collapsed="true">
+    <Position X="17.25" Y="6.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAABAAAAAiAAEAAgAAAAAAAEAAEAAAAAAAAAAAA=</HashCode>
+      <FileName>Task4.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="FigureКrhomb7" Collapsed="true">
+    <Position X="10.5" Y="5.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAEAAAAAAAAAIEAAEAAACAAAAAAAA=</HashCode>
+      <FileName>Task4.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="FigureКrhomb7WithHole" Collapsed="true">
+    <Position X="15" Y="5.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAEAAAAAAAAAAEAgEAAAAAAAAAAEA=</HashCode>
+      <FileName>Task4.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="FigureКrhomb8" Collapsed="true">
+    <Position X="19.5" Y="5.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAUAAAAAAAAAAFAAEAAAAAAAAAAAA=</HashCode>
+      <FileName>Task4.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="FigureКrhomb8WithHole" Collapsed="true">
+    <Position X="8.25" Y="5.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAEAAAAAAAAAQEAAEAAAAAAAACAAA=</HashCode>
+      <FileName>Task4.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="FigureКrhomb10" Collapsed="true">
+    <Position X="12.75" Y="5.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAIAAAAAAAAAAEAAAAAAAAAAEAAEAAAAAAAAACAA=</HashCode>
+      <FileName>Task4.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Font Name="Segoe UI" Size="9" />
+</ClassDiagram>
